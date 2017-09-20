@@ -1,0 +1,47 @@
+{
+	"files.autoSave": "onFocusChange",
+	"editor.quickSuggestions": {
+		"other": true,
+		"comments": false,
+		"strings": true
+	},
+	"git.autofetch": false,
+	//------- Editor settings ------
+	"editor.tabCompletion": true,
+	// "editor.snippetSuggestions": "top",
+	"editor.fontSize": 13,
+	// The number of spaces a tab is equal to.
+	"editor.tabSize": 4,
+	"editor.insertSpaces": false,
+	// When opening a file, `editor.tabSize` and `editor.insertSpaces` will be detected based on the file contents.
+	"editor.detectIndentation": false,
+	"editor.renderWhitespace": "all",
+	"editor.renderControlCharacters": true,
+	"editor.minimap.enabled": true,
+	"editor.minimap.renderCharacters": false,
+	"window.zoomLevel": 0,
+	//
+	//-------- Guides Configurations -------
+	// Extension https://marketplace.visualstudio.com/items?itemName=spywhere.guides
+	// Normal indentation guides rendering style.
+	"guides.normal.style": "solid",
+	// Stack indentation guides rendering style.
+	"guides.stack.style": "solid",
+	// Active indentation guides rendering width.
+	"guides.active.width": 2,
+	// Normal indentation guides rendering color for dark themes.
+	"guides.active.color.dark": "rgba(100, 100, 100, 1)",
+	// Normal indentation guides rendering color for light themes.
+	"guides.active.color.light": "rgba(220, 220, 220, 1)",
+	// Send anonymous usage statistics data to the developer.
+	"guides.sendUsagesAndStats": false,
+	"editor.renderIndentGuides": false,
+
+	"search.exclude": {
+		"**/node_modules": true,
+		"**/bower_components": true,
+		"**/_PublishedWebsites": true,
+		"**/bin": true,
+		"**/obj": true
+	},
+}
