@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 
 
 namespace W2
@@ -51,7 +52,10 @@ namespace W2
 				string boatDetails = Console.ReadLine();
 				
 				//spara till memberInformation.txt
+				File.WriteAllText("memberInformation.txt", name + "\n" + personalNumber + "\n" + memberID + "\n" + numberOfBoats + "\n" + boatDetails);
 				Console.WriteLine("The member has been saved!");
+				// string text = System.IO.File.ReadAllText(@"C:\wamp64\www\1dv610\1dv607-w2\memberInformation.txt");
+				
 			}
 			// else if(answer == "show")
 			// {
