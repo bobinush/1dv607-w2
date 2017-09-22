@@ -19,12 +19,12 @@ namespace W2.Models
 
 		public string ToCompact()
 		{
-			return $"Member {Id}: {Name} ({numberOfBoats})";
+			return $"Member {Id}: {Name} 'Number of boats: ' ({numberOfBoats})";
 
 		}
 		public string ToVerbose()
 		{
-			return $"Member {Id}: {Name} ({numberOfBoats})";
+			return $"Member {Id}: {Name} 'Number of boats: ' ({numberOfBoats})";
 		}
 
 	}
