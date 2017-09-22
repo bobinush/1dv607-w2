@@ -1,12 +1,31 @@
-﻿// using System;
+using System;
+using W2.Models;
 
-// namespace W2
-// {
-// 	class Program
-// 	{
-// 		static void Main(string[] args)
-// 		{
-// 			Console.WriteLine("What do you want to do? Choose number \n 1. Create a member \n 2. See Compact List\n 3. See Verbose List \n 4. Delete a member \n 5. Change a member's information \n 5.  ");
-// 		}
-// 	}
-// }
+namespace W2
+{
+	class Program
+	{
+		static void Main(string[] args)
+		{
+			// string input;
+			// do
+			// {
+			// 	try
+			// 	{
+			// Database.LoadDatabase();
+			var db = new Database();
+			db.GetAll();
+			// 	}
+			// 	catch (Exception ex)
+			// 	{
+			// 		Console.WriteLine(ex.Message);
+			// 		throw;
+			// 	}
+
+			// 	Console.WriteLine("You can write 'exit' to exit or 'start' to go to start");
+			// 	input = Console.ReadLine();
+
+			// } while (!input.Equals("exit", StringComparison.OrdinalIgnoreCase));
+		}
+	}
+}
