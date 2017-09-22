@@ -1,14 +1,14 @@
 using System;
 using System.IO;
-
+using W2.Models;
 
 namespace W2
 {
-	class Member
+	class MemberOpt
 	{
 		 static void Main(string[] args)
 		 { 
-			Console.WriteLine("Write 'delete', 'change', 'create' or 'show' members?");
+			Console.WriteLine("Write 'delete', 'change', 'create' or 'show'");
 			string answer = Console.ReadLine();
 			
 			// if(answer == "delete")
@@ -40,23 +40,20 @@ namespace W2
 				string name = Console.ReadLine();
 				
 				Console.WriteLine("Personal number");
-				long personalNumber = Convert.ToInt64(Console.ReadLine());
+				string personalNumber = Console.ReadLine();
 				
-				Console.WriteLine("Member ID");
-				int memberID =Convert.ToInt32(Console.ReadLine());
-				
-				Console.WriteLine("Number of boats");
-				int numberOfBoats = Convert.ToInt32(Console.ReadLine());
-				
-				Console.WriteLine("Boat details");
-				string boatDetails = Console.ReadLine();
-				
+				var member = new Member(name, personalNumber);
 				//spara till memberInformation.txt
-				File.WriteAllText("memberInformation.txt", name + "\n" + personalNumber + "\n" + memberID + "\n" + numberOfBoats + "\n" + boatDetails);
+				File.WriteAllText("memberInformation.txt", "Name :" + member.Name + "\n" + 
+					"Personal number: " + member.PersonalNumber + "\n" + 
+					"Member ID: " + member.Id + "\n" + 
+					"Number of boats: " +  member.numberOfBoats);
+
 				Console.WriteLine("The member has been saved!");
 				// string text = System.IO.File.ReadAllText(@"C:\wamp64\www\1dv610\1dv607-w2\memberInformation.txt");
 				
 			}
+			
 			// else if(answer == "show")
 			// {
 			// 	//show list ex, for loop som går igenom alla 
