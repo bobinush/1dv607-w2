@@ -15,10 +15,17 @@ namespace W2.Models
 		public string Name { get; set; }
 		public string PersonalNumber { get; set; }
 		public List<Boat> Boats { get; set; }
+		public int numberOfBoats { get { return Boats.Count; } }
 
-		public override string ToString()
+		public string ToCompact()
 		{
-			return $"Member {Id}: {Name} ({PersonalNumber})";
+			return $"Member {Id}: {Name} ({numberOfBoats})";
+
 		}
+		public string ToVerbose()
+		{
+			return $"Member {Id}: {Name} ({numberOfBoats})";
+		}
+
 	}
 }
