@@ -6,7 +6,7 @@ namespace W2
 {
 	class BoatOpt
 	{
-		static void Boats(string[] args)
+		public void Boats(string[] args)
 		{
 
 			//START
@@ -42,9 +42,9 @@ namespace W2
 				string length = Console.ReadLine();
 				double inputLenght = Int32.Parse(length);
 
-				var boat = new Boat(inputLenght, inputType);
+				var boat = new Boat(inputType, inputLenght);
 				//spara till databas
-				//ROBIN returnerar ett meddelande som visar att det är okej 
+				//ROBIN returnerar ett meddelande som visar att det är okej
 				Console.WriteLine("The boat has been saved!");
 			}
 			else

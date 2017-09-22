@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace W2.Models
 {
@@ -27,6 +28,14 @@ namespace W2.Models
 		{
 			return $"Member {Id}: {Name} 'Number of boats: ' ({numberOfBoats})";
 		}
-
+		/// <summary>
+		/// Adds a boat to the member.
+		/// </summary>
+		/// <param name="boat"></param>
+		public void AddBoat(Boat boat)
+		{
+			boat.Id = Boats.Max(x => x.Id) + 1;
+			Boats.Add(boat);
+		}
 	}
 }

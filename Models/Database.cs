@@ -34,12 +34,17 @@ namespace W2.Models
 			return Members;
 		}
 
-
+		/// <summary>
+		/// Sparar en ny medlem till databasen
+		/// </summary>
+		/// <param name="model"></param>
+		/// <returns>Returnerar true om den lyckats spara, annars falskt</returns>
 		public bool Save<T>(T model)
 		{
 			bool status = false;
 			try
 			{
+				LoadDatabase();
 				string type = model.GetType().Name;
 				if (type == "Member")
 				{
@@ -55,7 +60,6 @@ namespace W2.Models
 				System.Console.WriteLine(ex.ToString());
 			}
 			return status;
-
 		}
 		public void GetById(string[] args)
 		{

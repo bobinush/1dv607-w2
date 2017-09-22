@@ -6,7 +6,7 @@ namespace W2
 {
 	class MemberOpt
 	{
-		 static void Main(string[] args)
+		 public void Main(string[] args)
 		 { 
 			Console.WriteLine("Write 'delete', 'change', 'create' or 'show'");
 			string answer = Console.ReadLine();
