@@ -5,9 +5,15 @@ namespace W2.Models
 {
 	public class Boat
 	{
+		public Boat(double length, int type)
+		{
+			BoatType = (BoatTypes)type;
+			Length = length;
+			
+		}
 		public int Id { get; set; }
 		public BoatTypes BoatType { get; set; }
-		public int Length { get; set; }
+		public double Length { get; set; }
 
 		public override string ToString()
 		{
