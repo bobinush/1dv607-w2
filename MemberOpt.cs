@@ -53,6 +53,7 @@ namespace W2
 				// string text = System.IO.File.ReadAllText(@"C:\wamp64\www\1dv610\1dv607-w2\memberInformation.txt");
 				
 			}
+			
 			// else if(answer == "show")
 			// {
 			// 	//show list ex, for loop som går igenom alla 
