@@ -9,6 +9,7 @@ namespace W2.Models
 		{
 			Name = name;
 			PersonalNumber = personalNumber;
+			Boats = new List<Boat>();
 		}
 
 		public int Id { get; set; }

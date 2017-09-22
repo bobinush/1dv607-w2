@@ -1,36 +1,55 @@
 {
-	"Members": [{
+	"Members": [
+	  {
+		"Id": 1,
+		"Name": "test1",
+		"PersonalNumber": "123456-7890",
+		"Boats": [
+		  {
 			"Id": 1,
-			"Name": "test1",
-			"Boats": [{
-					"Id": 1,
-				},
-				{
-					"Id": 2,
-				}
-			]
-		},
-		{
+			"BoatType": 1,
+			"Length": 12.0
+		  },
+		  {
 			"Id": 2,
-			"Name": "test2",
-			"Boats": [{
-					"Id": 3,
-				},
-				{
-					"Id": 4,
-				}
-			]
-		},
-		{
+			"BoatType": 2,
+			"Length": 5.1
+		  }
+		]
+	  },
+	  {
+		"Id": 2,
+		"Name": "test2",
+		"PersonalNumber": "123456-7890",
+		"Boats": [
+		  {
 			"Id": 3,
-			"Name": "test3",
-			"Boats": [{
-					"Id": 5,
-				},
-				{
-					"Id": 6,
-				}
-			]
-		}
+			"BoatType": 3,
+			"Length": 2.0
+		  },
+		  {
+			"Id": 4,
+			"BoatType": 4,
+			"Length": 5.0
+		  }
+		]
+	  },
+	  {
+		"Id": 3,
+		"Name": "test3",
+		"PersonalNumber": "123456-7890",
+		"Boats": [
+		  {
+			"Id": 5,
+			"BoatType": 1,
+			"Length": 10.0
+		  },
+		  {
+			"Id": 6,
+			"BoatType": 2,
+			"Length": 6.0
+		  }
+		]
+	  }
 	]
-}
+  }

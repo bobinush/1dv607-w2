@@ -19,7 +19,7 @@
 	"editor.renderControlCharacters": true,
 	"editor.minimap.enabled": true,
 	"editor.minimap.renderCharacters": false,
-	"window.zoomLevel": 1,
+	"window.zoomLevel": 0,
 	//
 	//-------- Guides Configurations -------
 	// Extension https://marketplace.visualstudio.com/items?itemName=spywhere.guides
@@ -43,5 +43,5 @@
 		"**/_PublishedWebsites": true,
 		"**/bin": true,
 		"**/obj": true
-	},
+	}
 }

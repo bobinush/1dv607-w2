@@ -9,7 +9,7 @@ namespace W2.Models
 		{
 			BoatType = (BoatTypes)type;
 			Length = length;
-			
+
 		}
 		public int Id { get; set; }
 		public BoatTypes BoatType { get; set; }
