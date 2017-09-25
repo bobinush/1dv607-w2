@@ -6,51 +6,71 @@ namespace W2
 {
 	class BoatOpt
 	{
-		public void Boats(string[] args)
+		public void DoBoatList(Member member)
 		{
-			Console.WriteLine("1 Delete | 2 Change | 3 Create |");
-			string choices = Console.ReadLine();
-			double inputChoice = Int32.Parse(choices);
+			int inputChoice = 0;
 
-			//DELETE
-			if (inputChoice == 1)
+			do
 			{
-				Console.WriteLine("Wich members boat do you want to delete?");
-				//visa en lista över medlemmarna 
-			}
+				//visa en lista över medlemmens båtar
+				// välj båt med id.
+				int id = Int32.Parse(Console.ReadLine());
+				Boat chosenBoat = member.Boats.Find(x => x.Id == id);
 
-			//CHANGE
-			else if (inputChoice == 2)
-			{
-				Console.WriteLine("Wich boat do you want to change?");
-				//visa båtar BoatInformation()
-			}
+				Console.WriteLine("1 Delete | 2 Change | 3 Create | 4 Exit");
+				inputChoice = Int32.Parse(Console.ReadLine());
 
-			//CREATE
-			else if (inputChoice == 3)
-			{
-				Console.WriteLine("Choose type:");
-				Console.WriteLine("1 Sailboat | 2 Motorsailer | 3 Kayak/Canoe | 4 Other|");
-				string type = Console.ReadLine();
-				int inputType = Int32.Parse(type);
+				//DELETE
+				if (inputChoice == 1)
+				{
+					Console.WriteLine("Are you sure? Y/N");
+					string answer = Console.ReadLine();
+					if(answer == "Y"){
+						//member.deleteBoat(boat);
+					}
+				}
 
-				Console.WriteLine("Enter the boats length (meters)");
-				string length = Console.ReadLine();
-				int inputLenght = Int32.Parse(length);
+				//CHANGE
+				else if (inputChoice == 2)
+				{
+					Boat boat = InputBoatInformation();
+					chosenBoat.BoatType = boat.BoatType;
+					chosenBoat.Length = boat.Length;
+					// member.save()
+				}
 
-				var boat = new Boat(inputType, inputLenght);
-				//spara till databas
-				//ROBIN returnerar ett meddelande som visar att det är okej
-				Console.WriteLine("The boat has been saved!");
-			}
-			else
-			{
-				Console.WriteLine("You need to answer 1 Delete, 2 Change & 3 Create");
-			}
+				//CREATE
+				else if (inputChoice == 3)
+				{
+					Boat boat = InputBoatInformation();
+					member.AddBoat(boat);
+					//member.save();
 
+					//if(Robin returns true){
+						Console.WriteLine("The boat has been saved!");
+					//}else {
+				//}
+					//}
+					
+				}
+				else
+				{
+					Console.WriteLine("You need to answer 1 Delete, 2 Change & 3 Create");
+				}
+			} while (inputChoice != 4); // 4 = exit
+		}
 
-
-
+		private Boat InputBoatInformation()
+		{
+			Console.WriteLine("Choose type:");
+			Console.WriteLine("1 Sailboat | 2 Motorsailer | 3 Kayak/Canoe | 4 Other|");
+			string type = Console.ReadLine();
+			int inputType = Int32.Parse(type);
+			Console.WriteLine("Enter the boats length (meters)");
+			string length = Console.ReadLine();
+			double inputLenght = Convert.ToDouble(length);
+			var boat = new Boat(inputType, inputLenght);
+			return boat;
 
 		}
 
