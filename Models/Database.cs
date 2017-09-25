@@ -12,48 +12,63 @@ namespace W2.Models
 	{
 		public Database()
 		{
+			Members = new List<Member>();
 		}
-		private Database db;
 		// public IEnumerable<Boat> Boats { get; set; }
-		private List<Member> Members { get; set; }
+		public List<Member> Members { get; set; }
 
 		public void LoadDatabase()
 		{
-			db = JsonConvert.DeserializeObject<Database>(File.ReadAllText("db.json"));
-			// Boats = db.Boats;
+			Database db = JsonConvert.DeserializeObject<Database>(File.ReadAllText("db.json"));
 			Members = db.Members;
 		}
-		private void WriteToFile()
+		private bool WriteToFile()
 		{
-			var text = JsonConvert.SerializeObject(this);
-			File.WriteAllText("db.json", text);
+			try
+			{
+				var text = JsonConvert.SerializeObject(this);
+				File.WriteAllText("db.json", text);
+				return true;
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine(ex.ToString());
+				return false;
+			}
 		}
 		public List<Member> GetAllMembers()
 		{
-			Members.ToList().ForEach(x => System.Console.WriteLine(x.ToString()));
 			return Members;
 		}
-
-		/// <summary>
-		/// Sparar en ny medlem till databasen
-		/// </summary>
-		/// <param name="model"></param>
-		/// <returns>Returnerar true om den lyckats spara, annars falskt</returns>
 		public bool Save<T>(T model)
 		{
 			bool status = false;
 			try
 			{
-				LoadDatabase();
 				string type = model.GetType().Name;
-				if (type == "Member")
+				if (type == nameof(Member))
 				{
 					var member = (Member)(object)model;
-					member.Id = db.Members.Max(x => x.Id) + 1;
-					Members.Add(member);
-					WriteToFile();
+					if (member.Id == 0)
+					{
+						// Spara ny medlem
+						member.Id = Members.Select(x => x.Id).DefaultIfEmpty(0).Max() + 1;
+						Members.Add(member);
+					}
+					else
+					{
+						// Uppdatera en medlem
+						var originalMember = GetMemberById(member.Id);
+						originalMember.Name = member.Name;
+						originalMember.PersonalNumber = member.PersonalNumber;
+						originalMember.Boats = member.Boats;
+					}
 				}
-				status = true;
+				else if (type == nameof(Boat))
+				{
+					throw new NotImplementedException();
+				}
+				status = WriteToFile();
 			}
 			catch (Exception ex)
 			{
@@ -61,21 +76,21 @@ namespace W2.Models
 			}
 			return status;
 		}
-		public void GetById(string[] args)
+		public Member GetMemberById(int id)
 		{
-
+			return Members.Find(x => x.Id == id);
 		}
-		public void Create(string[] args)
+		public void Create()
 		{
-
+			throw new NotImplementedException();
 		}
-		public void Update(string[] args)
+		public void Update()
 		{
-
+			throw new NotImplementedException();
 		}
-		public void Delete(string[] args)
+		public void Delete()
 		{
-
+			throw new NotImplementedException();
 		}
 	}
 }
