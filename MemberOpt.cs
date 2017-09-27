@@ -40,7 +40,7 @@ namespace W2
 				Console.WriteLine("1 Edit | 2 Delete | 3 View Boat");
 				int memberChoises = Int32.Parse(Console.ReadLine());
 
-				if(memberChoises == "1")
+				if(memberChoises == 1)
 			{
 				Console.WriteLine("Name");
 				string nameEdit = Console.ReadLine();
@@ -51,7 +51,7 @@ namespace W2
 				//save
 				Member.Save();
 			}
-				else if(memberChoises == "2")
+				else if(memberChoises == 2)
 				{
 					//show members
 					Console.WriteLine("Write which memberID you wanna delete");
