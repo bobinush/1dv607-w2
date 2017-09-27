@@ -5,11 +5,11 @@ namespace W2.Models
 {
 	public class Boat
 	{
-		public Boat(double length, int type)
+		public Boat(int type, double length)
 		{
 			BoatType = (BoatTypes)type;
 			Length = length;
-			
+
 		}
 		public int Id { get; set; }
 		public BoatTypes BoatType { get; set; }

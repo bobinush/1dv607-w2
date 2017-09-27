@@ -13,22 +13,53 @@ namespace W2.Models
 		public Database()
 		{
 		}
-		// private Database db;
-		public IEnumerable<Boat> Boats { get; set; }
-		public IEnumerable<Member> Members { get; set; }
+		private Database db;
+		// public IEnumerable<Boat> Boats { get; set; }
+		private List<Member> Members { get; set; }
 
-		private void LoadDatabase()
+		public void LoadDatabase()
 		{
-			var db = JsonConvert.DeserializeObject<Database>(File.ReadAllText("db.json"));
-			Boats = db.Boats;
+			db = JsonConvert.DeserializeObject<Database>(File.ReadAllText("db.json"));
+			// Boats = db.Boats;
 			Members = db.Members;
 		}
-		public void GetAll(string type = "Boats")
+		private void WriteToFile()
 		{
-			LoadDatabase();
-			var t = this.GetType().GetProperty(type).GetValue(this, null);
-			Boats.ToList().ForEach(x => System.Console.WriteLine(x.ToString()));
-			System.Console.WriteLine(Boats);
+			var text = JsonConvert.SerializeObject(this);
+			File.WriteAllText("db.json", text);
+		}
+		public List<Member> GetAllMembers()
+		{
+			Members.ToList().ForEach(x => System.Console.WriteLine(x.ToString()));
+			return Members;
+		}
+
+		/// <summary>
+		/// Sparar en ny medlem till databasen
+		/// </summary>
+		/// <param name="model"></param>
+		/// <returns>Returnerar true om den lyckats spara, annars falskt</returns>
+		public bool Save<T>(T model)
+		{
+			bool status = false;
+			try
+			{
+				LoadDatabase();
+				string type = model.GetType().Name;
+				if (type == "Member")
+				{
+					var member = (Member)(object)model;
+					member.Id = db.Members.Max(x => x.Id) + 1;
+					Members.Add(member);
+					WriteToFile();
+				}
+				status = true;
+			}
+			catch (Exception ex)
+			{
+				System.Console.WriteLine(ex.ToString());
+			}
+			return status;
 		}
 		public void GetById(string[] args)
 		{
