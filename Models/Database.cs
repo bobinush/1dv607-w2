@@ -22,7 +22,7 @@ namespace W2.Models
 			Database db = JsonConvert.DeserializeObject<Database>(File.ReadAllText("db.json"));
 			Members = db.Members;
 		}
-		private bool WriteToFile()
+		private bool WriteChangesToFile()
 		{
 			try
 			{
@@ -36,6 +36,12 @@ namespace W2.Models
 				return false;
 			}
 		}
+		public void Delete(int id)
+		{
+			Members.Remove(GetMemberById(id));
+			WriteChangesToFile();
+		}
+
 		public List<Member> GetAllMembers()
 		{
 			return Members;
@@ -69,7 +75,7 @@ namespace W2.Models
 					// Not necessary since we can update boats through member
 					throw new NotImplementedException();
 				}
-				status = WriteToFile();
+				status = WriteChangesToFile();
 			}
 			catch (Exception ex)
 			{
