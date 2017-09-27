@@ -66,6 +66,7 @@ namespace W2.Models
 				}
 				else if (type == nameof(Boat))
 				{
+					// Not necessary since we can update boats through member
 					throw new NotImplementedException();
 				}
 				status = WriteToFile();
@@ -79,18 +80,6 @@ namespace W2.Models
 		public Member GetMemberById(int id)
 		{
 			return Members.Find(x => x.Id == id);
-		}
-		public void Create()
-		{
-			throw new NotImplementedException();
-		}
-		public void Update()
-		{
-			throw new NotImplementedException();
-		}
-		public void Delete()
-		{
-			throw new NotImplementedException();
 		}
 	}
 }
