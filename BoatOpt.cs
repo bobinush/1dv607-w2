@@ -6,8 +6,10 @@ namespace W2
 {
 	class BoatOpt
 	{
-		public void DoBoatList(Member member)
+		private Database db;
+		public void DoBoatList(Member member, Database database)
 		{
+			db = database;
 			int inputChoice = 0;
 
 			do
@@ -25,7 +27,8 @@ namespace W2
 				{
 					Console.WriteLine("Are you sure? Y/N");
 					string answer = Console.ReadLine();
-					if(answer == "Y"){
+					if (answer == "Y")
+					{
 						//member.deleteBoat(boat);
 					}
 				}
@@ -33,9 +36,8 @@ namespace W2
 				//CHANGE
 				else if (inputChoice == 2)
 				{
-					Boat boat = InputBoatInformation();
-					chosenBoat.BoatType = boat.BoatType;
-					chosenBoat.Length = boat.Length;
+					Boat newBoatInfo = InputBoatInformation();
+					member.UpdateBoat(chosenBoat, newBoatInfo);
 					// member.save()
 				}
 
@@ -47,11 +49,13 @@ namespace W2
 					//member.save();
 
 					//if(Robin returns true){
-						Console.WriteLine("The boat has been saved!");
+					Console.WriteLine("The boat has been saved!");
 					//}else {
+						Console.WriteLine("Error!!!!!!!");
 				//}
 					//}
-					
+					//}
+
 				}
 				else
 				{
