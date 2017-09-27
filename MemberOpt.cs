@@ -6,11 +6,22 @@ namespace W2
 {
 	class MemberOpt
 	{
-		 public void Main(string[] args)
-		 { 
+		private Database db;
+		public void Main(Database database)
+		{
+			db = database;
+			// create or show members
+			// list all members
+			// get id
+			int id = int.Parse(Console.ReadLine());
+			Member member = db.GetMemberById(id);
 			Console.WriteLine("Write 'delete', 'change', 'create' or 'show'");
 			string answer = Console.ReadLine();
-			
+
+			if (answer == "boat")
+			{
+				EnterBoatSection(member);
+			}
 			// if(answer == "delete")
 			// {
 			// 	//show members
@@ -34,26 +45,26 @@ namespace W2
 			// 		//spara den
 			// 	}
 			// }
-			if(answer == "create")
+			if (answer == "create")
 			{
 				Console.WriteLine("Name");
 				string name = Console.ReadLine();
-				
+
 				Console.WriteLine("Personal number");
 				string personalNumber = Console.ReadLine();
-				
-				var member = new Member(name, personalNumber);
+
+				var newMember = new Member(name, personalNumber);
 				//spara till memberInformation.txt
-				File.WriteAllText("memberInformation.txt", "Name :" + member.Name + "\n" + 
-					"Personal number: " + member.PersonalNumber + "\n" + 
-					"Member ID: " + member.Id + "\n" + 
-					"Number of boats: " +  member.numberOfBoats);
+				File.WriteAllText("memberInformation.txt", "Name :" + newMember.Name + "\n" +
+					"Personal number: " + newMember.PersonalNumber + "\n" +
+					"Member ID: " + newMember.Id + "\n" +
+					"Number of boats: " + newMember.numberOfBoats);
 
 				Console.WriteLine("The member has been saved!");
 				// string text = System.IO.File.ReadAllText(@"C:\wamp64\www\1dv610\1dv607-w2\memberInformation.txt");
-				
+
 			}
-			
+
 			// else if(answer == "show")
 			// {
 			// 	//show list ex, for loop som går igenom alla 
@@ -71,16 +82,17 @@ namespace W2
 			// 	{
 			// 		Console.WriteLine("You need to answer compact or verbose");
 			// 	}
-				
+
 			// }
 			else
 			{
 				Console.WriteLine("You need to answer change, delete, create or show");
 			}
-		 }
-		 public class Create
-		 {
-			 
-		 }
+		}
+		private void EnterBoatSection(Member member)
+		{
+			var b = new BoatOpt();
+			b.DoBoatList(member, db);
+		}
 	}
 }

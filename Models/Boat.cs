@@ -17,7 +17,7 @@ namespace W2.Models
 
 		public override string ToString()
 		{
-			return $"Boat {Id} is a {Length}ft long {BoatType}";
+			return $"Boat {Id} is a {Length}ft long {BoatType}.";
 		}
 	}
 }
