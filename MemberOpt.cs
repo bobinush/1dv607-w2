@@ -34,7 +34,6 @@ namespace W2
 							Console.WriteLine(mem.ToCompact());
 						}
 					}
-					Console.WriteLine(db.GetAllMembers());
 					Console.WriteLine("Choose member by ID");
 					int id = Int32.Parse(Console.ReadLine());
 					Member member = db.GetMemberById(id);
