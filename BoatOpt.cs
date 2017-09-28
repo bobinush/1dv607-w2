@@ -14,18 +14,19 @@ namespace W2
 
 			do
 			{
+				Console.WriteLine("BOATS");
 				Console.WriteLine("1 Create | 2 Show ");
-				int createorShowBoat = Int32.parse(Console.ReadLine());
+				int createorShowBoat = Int32.Parse(Console.ReadLine());
 				if(createorShowBoat == 1){
 					Boat boat = InputBoatInformation();
 					member.AddBoat(boat);
 
-					if(db.Save()){
+					if(db.Save(member)){
 					Console.WriteLine("The boat has been saved!");
 					}else {
 						Console.WriteLine("Something went wrong!");
 					}
-				}
+				
 			}else if( createorShowBoat == 2)
 			{
 					foreach (Boat boat in member.Boats){
@@ -57,7 +58,7 @@ namespace W2
 					member.UpdateBoat(chosenBoat, newBoatInfo);
 				}
 			}
-		}
+		
 			} while (inputChoice != 3); // 3 = exit
 }
 
