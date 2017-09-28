@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 {"Members":[{"Id":1,"Name":"test1","PersonalNumber":"123456-7890","Boats":[{"Id":1,"BoatType":1,"Length":12.0},{"Id":2,"BoatType":2,"Length":5.1}],"numberOfBoats":2},{"Id":2,"Name":"Rosa","PersonalNumber":"199710071987","Boats":[{"Id":3,"BoatType":3,"Length":2.0},{"Id":4,"BoatType":4,"Length":5.0}],"numberOfBoats":2},{"Id":3,"Name":"Frida","PersonalNumber":"1995299721","Boats":[{"Id":5,"BoatType":1,"Length":10.0},{"Id":6,"BoatType":2,"Length":6.0}],"numberOfBoats":2}]}
+=======
+{"Members":[{"Id":1,"Name":"test1","PersonalNumber":"123456-7890","Boats":[{"Id":1,"BoatType":1,"Length":12.0},{"Id":2,"BoatType":2,"Length":5.1}],"numberOfBoats":2},{"Id":2,"Name":"test2","PersonalNumber":"123456-7890","Boats":[{"Id":3,"BoatType":3,"Length":2.0},{"Id":4,"BoatType":4,"Length":5.0}],"numberOfBoats":2},{"Id":3,"Name":"test3","PersonalNumber":"123456-7890","Boats":[{"Id":5,"BoatType":1,"Length":10.0},{"Id":6,"BoatType":2,"Length":6.0},{"Id":7,"BoatType":2,"Length":12.0}],"numberOfBoats":3},{"Id":4,"Name":"kalle anka","PersonalNumber":"910524-xxxx","Boats":[{"Id":1,"BoatType":2,"Length":1.3}],"numberOfBoats":1}]}
+>>>>>>> bb2ff77f6ad66a9004a7b31e58c969709649eca9
