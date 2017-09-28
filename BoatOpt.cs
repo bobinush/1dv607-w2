@@ -24,13 +24,14 @@ namespace W2
 					Console.WriteLine("The boat has been saved!");
 					}else {
 						Console.WriteLine("Something went wrong!");
-				}
 					}
-				} else if( createorShowBoat == 2){
-					foreach (Boat boat in member.Boats)
-				{
-					Console.WriteLine(boat.ToString());
 				}
+			}else if( createorShowBoat == 2)
+			{
+					foreach (Boat boat in member.Boats){
+					Console.WriteLine(boat.ToString());
+					}
+
 					Console.WriteLine("Choose a boat by ID");
 					int id = Int32.Parse(Console.ReadLine());
 					Boat chosenBoat = member.Boats.Find(x => x.Id == id);
@@ -55,10 +56,10 @@ namespace W2
 					Boat newBoatInfo = InputBoatInformation();
 					member.UpdateBoat(chosenBoat, newBoatInfo);
 				}
-					}
+			}
 		}
 			} while (inputChoice != 3); // 3 = exit
-		}
+}
 
 		private Boat InputBoatInformation()
 		{
