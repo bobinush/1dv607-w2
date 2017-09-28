@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using W2.Models;
+using W2.Views;
 
 namespace W2
 {
@@ -14,9 +15,11 @@ namespace W2
 			// 	try
 			// 	{
 			var db = new Database();
-			db.LoadDatabase();
+			var view = new View();
 			var members = new MemberOpt();
-			members.Main(db);
+
+			db.LoadDatabase();
+			members.Main(db, view);
 
 			// 	}
 			// 	catch (Exception ex)

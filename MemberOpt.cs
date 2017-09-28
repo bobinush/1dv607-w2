@@ -1,21 +1,21 @@
 using System;
 using System.IO;
 using W2.Models;
+using W2.Views;
 
 namespace W2
 {
 	class MemberOpt
 	{
 		private Database db;
-		public void Main(Database database)
+		public void Main(Database database, View view)
 		{
 			db = database;
 			int showOrCreate = 0;
 			// create or show members
 			do
 			{
-				Console.WriteLine("1 Show | 2 Create | 3 Exit");
-				showOrCreate = Int32.Parse(Console.ReadLine());
+				showOrCreate = view.ShowStartMenu();
 				if (showOrCreate == 1) // Show
 				{
 					Console.WriteLine("1 Verbose | 2 Compact");
@@ -42,19 +42,15 @@ namespace W2
 
 					if (memberChoises == 1) // Edit
 					{
-						Console.WriteLine("Name");
-						string nameEdit = Console.ReadLine();
-
-						Console.WriteLine("Personal number");
-						string personalNumberEdit = Console.ReadLine();
+						string nameEdit = view.Question("Name");
+						string personalNumberEdit = view.Question("Personal number");
 						member.Name = nameEdit;
 						member.PersonalNumber = personalNumberEdit;
 						db.Save(member);
 					}
 					else if (memberChoises == 2) // Delete
 					{
-						Console.WriteLine("Are you sure? Yes/no");
-						string deleteOpt = Console.ReadLine();
+						string deleteOpt = view.Question("Are you sure? Yes/no");
 
 						if (deleteOpt == "Yes")
 						{
@@ -75,28 +71,24 @@ namespace W2
 					}
 					else if (memberChoises == 3) //Boats
 					{
-						EnterBoatSection(member);
+						EnterBoatSection(member, view);
 					}
 
 				}
 				else if (showOrCreate == 2) // Create
 				{
-					Console.WriteLine("Name");
-					string name = Console.ReadLine();
-
-					Console.WriteLine("Personal number");
-					string personalNumber = Console.ReadLine();
-
+					string name = view.Question("Name");
+					string personalNumber = view.Question("Personal number");
 					var newMember = new Member(name, personalNumber);
 
 					db.Save(newMember);
 				}
-			} while (showOrCreate != 3);
+			} while (showOrCreate != 3); // 3 = Exit
 		}
-		private void EnterBoatSection(Member member)
+		private void EnterBoatSection(Member member, View view)
 		{
 			var b = new BoatOpt();
-			b.DoBoatList(member, db);
+			b.DoBoatList(member, db, view);
 		}
 	}
 }

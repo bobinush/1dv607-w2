@@ -1,36 +1,41 @@
 using System;
 using System.IO;
 using W2.Models;
+using W2.Views;
 
 namespace W2
 {
 	class BoatOpt
 	{
 		private Database db;
-		public void DoBoatList(Member member, Database database)
+		public void DoBoatList(Member member, Database database, View view)
 		{
 			db = database;
 			int inputChoice = 0;
-
 			do
 			{
 				Console.WriteLine("BOATS");
-				Console.WriteLine("1 Create | 2 Show ");
-				int createorShowBoat = Int32.Parse(Console.ReadLine());
-				if(createorShowBoat == 1){
+				int createorShowBoat = view.ShowStartMenu();
+				if (createorShowBoat == 1)
+				{
 					Boat boat = InputBoatInformation();
 					member.AddBoat(boat);
 
-					if(db.Save(member)){
-					Console.WriteLine("The boat has been saved!");
-					}else {
+					if (db.Save(member))
+					{
+						Console.WriteLine("The boat has been saved!");
+					}
+					else
+					{
 						Console.WriteLine("Something went wrong!");
 					}
-				
-			}else if( createorShowBoat == 2)
-			{
-					foreach (Boat boat in member.Boats){
-					Console.WriteLine(boat.ToString());
+
+				}
+				else if (createorShowBoat == 2)
+				{
+					foreach (Boat boat in member.Boats)
+					{
+						Console.WriteLine(boat.ToString());
 					}
 
 					Console.WriteLine("Choose a boat by ID");
@@ -39,28 +44,28 @@ namespace W2
 
 					Console.WriteLine("1 Delete | 2 Change | 3 Exit");
 					inputChoice = Int32.Parse(Console.ReadLine());
-			
-				//DELETE
-				if (inputChoice == 1)
-				{
-					Console.WriteLine("Are you sure? Y/N");
-					string answer = Console.ReadLine();
-					if (answer == "Y")
+
+					//DELETE
+					if (inputChoice == 1)
 					{
-						member.DeleteBoat(id);
+						Console.WriteLine("Are you sure? Y/N");
+						string answer = Console.ReadLine();
+						if (answer == "Y")
+						{
+							member.DeleteBoat(id);
+						}
+					}
+
+					//CHANGE
+					else if (inputChoice == 2)
+					{
+						Boat newBoatInfo = InputBoatInformation();
+						member.UpdateBoat(chosenBoat, newBoatInfo);
 					}
 				}
 
-				//CHANGE
-				else if (inputChoice == 2)
-				{
-					Boat newBoatInfo = InputBoatInformation();
-					member.UpdateBoat(chosenBoat, newBoatInfo);
-				}
-			}
-		
-			} while (inputChoice != 3); // 3 = exit
-}
+			} while (inputChoice != 3); // 3 = Exit
+		}
 
 		private Boat InputBoatInformation()
 		{
