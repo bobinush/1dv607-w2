@@ -2,23 +2,18 @@ using System;
 
 namespace W2.Views
 {
-	class BoatView
+	public class BoatView
 	{
-		void List(string[] args)
+		public int Question(string question)
 		{
-
-		}
-		void Create(string[] args)
-		{
-
-		}
-		void Edit(string[] args)
-		{
-
-		}
-		void Delete(string[] args)
-		{
-
+			bool answered = false;
+			int result = 0;
+			while (!answered)
+			{
+				Console.WriteLine(question);
+				answered = int.TryParse(Console.ReadLine(), out result);
+			}
+			return result;
 		}
 	}
 }
