@@ -1,0 +1,68 @@
+title Authentication Sequence
+User->Member: Show
+Member-->Boat: Get Boats
+Boat-->Database: Get Boats
+Member->Database: Get Members
+Database->User: List of Members+Boats
+opt Create
+User->Member: Create new
+Member->User: Create form
+User->Member: new Member
+Member->Database: Save
+Database->User: List of Members
+end
+opt View
+User->Member: View :id
+Member->Database: Get Member
+Database->User: Member info and list of Boats
+opt Create
+User->Boat: Create new
+Boat->User: Create form
+User->Boat: new Boat
+Boat->Database: Save
+Database->User: Member with list of Boats
+end
+opt View
+User->Boat: View :id
+Boat->Database: Get Boat
+Database->User: Boat info
+end
+opt Edit
+User->Boat: Edit :id
+Boat->Database: Get Boat
+Database->Boat: Boat
+Boat->User: Edit form
+User->Boat: Changes
+Boat->Database: Save
+Database->User: Member with list of Boats
+end
+opt Delete
+User->Boat: Delete :id
+Boat->User: Delete confirmation
+User->Boat: Answer
+alt Yes
+    Boat->Database: Save
+end
+Database->User: Member with list of Boats
+end
+end
+opt Edit
+User->Member: Edit :id
+Member->Database: Get Member
+Database->Member: Member
+Member->User: Edit form
+User->Member: Changes
+Member->Database: Save
+Database->User: List of Members
+end
+opt Delete
+User->Member: Delete :id
+Member->User: Delete confirmation
+User->Member: Answer
+alt Yes
+    Member->Database: Save
+end
+Database->User: List of Members
+end
+
+
