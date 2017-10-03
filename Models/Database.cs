@@ -10,6 +10,7 @@ namespace W2.Models
 {
 	class Database
 	{
+		private string dbFile = "db.json";
 		public Database()
 		{
 			Members = new List<Member>();
@@ -19,15 +20,35 @@ namespace W2.Models
 
 		public void LoadDatabase()
 		{
-			Database db = JsonConvert.DeserializeObject<Database>(File.ReadAllText("db.json"));
+			if (!File.Exists(dbFile))
+			{
+				SeedDatabase();
+			}
+			Database db = JsonConvert.DeserializeObject<Database>(File.ReadAllText(dbFile));
 			Members = db.Members;
+		}
+		private void SeedDatabase()
+		{
+			var Members = new List<Member>();
+			var arr = new {Members};
+			for (int i = 1; i < 3; i++)
+			{
+				Member member = new Member("test "+ i.ToString(), "123456-7890");
+				member.Id = i;
+				member.AddBoat(new Boat(i, 12d));
+				Members.Add(member);
+			}
+			using (StreamWriter sw = File.CreateText(dbFile))
+			{
+				sw.WriteLine(JsonConvert.SerializeObject(arr));
+			}
 		}
 		private bool WriteChangesToFile()
 		{
 			try
 			{
 				var text = JsonConvert.SerializeObject(this);
-				File.WriteAllText("db.json", text);
+				File.WriteAllText(dbFile, text);
 				return true;
 			}
 			catch (Exception ex)
@@ -79,7 +100,7 @@ namespace W2.Models
 			}
 			catch (Exception ex)
 			{
-				System.Console.WriteLine(ex.ToString());
+				throw ex;
 			}
 			return status;
 		}

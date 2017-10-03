@@ -1,5 +1,4 @@
 using System;
-using System.IO;
 using W2.Models;
 using W2.Views;
 
@@ -14,75 +13,57 @@ namespace W2
 			int inputChoice = 0;
 			do
 			{
-				Console.WriteLine("BOATS");
-				int createorShowBoat = view.ShowStartMenu();
-				if (createorShowBoat == 1)
-				{
-					Boat boat = InputBoatInformation();
-					member.AddBoat(boat);
-
-					if (db.Save(member))
-					{
-						Console.WriteLine("The boat has been saved!");
-					}
-					else
-					{
-						Console.WriteLine("Something went wrong!");
-					}
-
-				}
-				else if (createorShowBoat == 2)
+				inputChoice = view.ShowStartMenu("Boats");
+				if (inputChoice == 1) // Show
 				{
 					foreach (Boat boat in member.Boats)
 					{
-						Console.WriteLine(boat.ToString());
+						view.showInfo(boat.ToString());
 					}
 
-					Console.WriteLine("Choose a boat by ID");
-					int id = Int32.Parse(Console.ReadLine());
-					Boat chosenBoat = member.Boats.Find(x => x.Id == id);
+					int id = Int32.Parse(view.Question("Choose a boat by ID"));
+					Boat chosenBoat = member.GetBoat(id);
 
-					Console.WriteLine("1 Delete | 2 Change | 3 Exit");
-					inputChoice = Int32.Parse(Console.ReadLine());
-
-					//DELETE
-					if (inputChoice == 1)
+					inputChoice = Int32.Parse(view.Question("1 Edit | 2 Delete | 3 Exit"));
+					if (inputChoice == 1) // Edit
 					{
-						Console.WriteLine("Are you sure? Y/N");
-						string answer = Console.ReadLine();
-						if (answer == "Y")
+						Boat newBoatInfo = InputBoatInformation(view);
+						member.UpdateBoat(chosenBoat, newBoatInfo);
+					}
+
+					else if (inputChoice == 2) // Delete
+					{
+						string answer = view.Question("Are you sure? y/n");
+						if (answer == "y")
 						{
 							member.DeleteBoat(id);
 						}
 					}
+				}
+				else if (inputChoice == 2) // Create
+				{
+					Boat boat = InputBoatInformation(view);
+					member.AddBoat(boat);
 
-					//CHANGE
-					else if (inputChoice == 2)
+					if (db.Save(member))
 					{
-						Boat newBoatInfo = InputBoatInformation();
-						member.UpdateBoat(chosenBoat, newBoatInfo);
+						view.showInfo("The boat has been saved!");
+					}
+					else
+					{
+						view.showError("Something went wrong!");
 					}
 				}
-
 			} while (inputChoice != 3); // 3 = Exit
 		}
 
-		private Boat InputBoatInformation()
+		private Boat InputBoatInformation(View view)
 		{
-			Console.WriteLine("Choose type:");
-			Console.WriteLine("1 Sailboat | 2 Motorsailer | 3 Kayak/Canoe | 4 Other|");
-			string type = Console.ReadLine();
-			int inputType = Int32.Parse(type);
-			Console.WriteLine("Enter the boats length (ft)");
-			string length = Console.ReadLine();
-			double inputLenght = Convert.ToDouble(length);
+			view.showInfo("Choose type:");
+			int inputType = Int32.Parse(view.Question("1 Sailboat | 2 Motorsailer | 3 Kayak/Canoe | 4 Other"));
+			double inputLenght = Convert.ToDouble(view.Question("Enter the boats length (ft)"));
 			var boat = new Boat(inputType, inputLenght);
 			return boat;
-
 		}
-
-
 	}
-
-
 }

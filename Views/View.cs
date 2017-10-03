@@ -4,8 +4,9 @@ namespace W2.Views
 {
 	public class View
 	{
-		public int ShowStartMenu()
+		public int ShowStartMenu(string title)
 		{
+			Console.WriteLine(title);
 			Console.WriteLine("1 Show | 2 Create | 3 Exit");
 			return GetMenuChoice();
 		}
@@ -40,6 +41,18 @@ namespace W2.Views
 				answered = !string.IsNullOrWhiteSpace(input);
 			}
 			return input;
+		}
+
+		public void showInfo(string infoMsg)
+		{
+			Console.WriteLine(infoMsg);
+		}
+
+		public void showError(string errorMsg)
+		{
+			Console.ForegroundColor = ConsoleColor.Red;
+			Console.WriteLine(errorMsg);
+			Console.ResetColor();
 		}
 	}
 }

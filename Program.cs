@@ -18,8 +18,21 @@ namespace W2
 			var view = new View();
 			var members = new MemberOpt();
 
+
 			db.LoadDatabase();
-			members.Main(db, view);
+			bool loop = true;
+			while (loop)
+			{
+				try
+				{
+					loop = members.Main(db, view);
+				}
+				catch (System.Exception ex)
+				{
+					view.showError(ex.Message);
+					// throw ex;
+				}
+			}
 
 			// 	}
 			// 	catch (Exception ex)

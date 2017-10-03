@@ -26,11 +26,10 @@ namespace W2.Models
 		public string ToCompact()
 		{
 			return $"Member {Id}: {Name}. Number of boats: {numberOfBoats}";
-
 		}
 
 		/// <summary>
-		/// Displays detailed information about the member and lists the boats 
+		/// Displays detailed information about the member and lists the boats
 		/// associated with the member.
 		/// </summary>
 		/// <returns></returns>
@@ -66,7 +65,10 @@ namespace W2.Models
 			oldBoat.BoatType = newBoat.BoatType;
 			oldBoat.Length = newBoat.Length;
 		}
-
+		public Boat GetBoat(int id)
+		{
+			return Boats.Find(x => x.Id == id);
+		}
 		public void DeleteBoat(int id)
 		{
 			Boat boat = Boats.Find(x => x.Id == id);
