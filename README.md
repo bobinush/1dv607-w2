@@ -1,1 +1,6 @@
-# 1dv607-w2
+# 1dv607 Workshop 2
+
+Project is compiled to run on a windows x64 system.
+How to change that:
+Compiling your c# project into a self contained exe from vscode by Molly Arhammar.
+https://theuggla.github.io/2017/10/02/compile-csharp-to-exe-vscode.html
