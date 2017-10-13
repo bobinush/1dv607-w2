@@ -1,0 +1,24 @@
+*We have changed the name for the BoatOpt and MemberOpt to BoatController and MemberController. 
+*We added a word to clearify the specific member menu. Show boats -> Show boats menu 
+*We changed the properties of the member and boat to private, to avoid privacy leak. 
+*Only english comments 
+*Fixed the casing of the variable names 
+*Changed BoatTypes -> BoatType (singular)
+
+
+
+TODO:
+*Sequencediagram 2 st + lägg till alla klasser
+*Fixa klassdiagrammet så alla klasser finns med samt ändra namnen(Stora och små bokstäver)
+*Försök fixa bort ToString och ToVerbose och ToCompact i modellen. Flytta till vyn
+*Flytta meddelanden från controller -> view 
+*Fokusera mer på MVC - Skicka objekt till vyn, inte bara färdiga strängar
+*Göra ett Tobias-diagram (packages) 
+
+***
+Much both cleaner and faster way would be to : public void DeleteBoat(Boat boat) { Boats.Remove(boat); } and just send in chosenBoat as the argument. However you will need the getBoatById function you have, but I think that should be moved to view or a controller since I think that is quite specific for this UI solution. If for example, you had a GUI, you wouldn't probably need the function at all.
+
+***
+Class Diagram: I think the class diagram misses a big part of showing the design when only consists of Member, Boat, and BoatType. I would have preferred if all classes were modeled, and good to show package so you can see that MV design is used. It's a correct use of the composition relation line. However, I think this type of relationship isn't used very often when modeling for a language with automatic garbage collection. I believe the association line between Member and Boat should have an arrow to show the association, Larman shows the basic notations in a figure[1, p250]. There should also be an association relation between Boat and BoatTypes (BoatTypes class should be singular). In your design, it was modeled as a dependency. There should also be a dependency relation between Member and BoatTypes since in the code Member depends on BoatTypes. Another thing that I don't think is accurate that the Member and Boat classes variables are public, so should be changed from + to -. If they are public it should be changed to private in the code as well. Not 100% sure on the C# short way of making variables with getters and setters. It says public in front of it, but in my understanding, it's just the get and set method that is public and the variable itself is private.
+
+Sequence Diagram: First of all, I think the diagrams should be split into two sequence diagrams. Then call arrows are a bit messed up in the notation. Returning arrows shouldn't be filled, and all calls should have filled line as shown by Larman [1, p228-229]. But biggest error is that is not correct to the code, i.e. Member doesn't send any GetMembers message to Database. I also think that all of your own Classes that are involved should be part of each sequence diagram. So if not to start from the Program class I think you should at least start from the MemberOpt class to show the messaging to the view, returning of a statement and how the loop in MemberOpt class send messages to each Member to return the compact/verbose info. You can also add package names in the Class names by ”::” to show what package each class belongs to. By doing so and adding the other classes, one could see that the design follows an MV architecture. Larman shows how to do this in his[1, p564]

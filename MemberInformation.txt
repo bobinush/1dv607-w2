@@ -1,5 +1,0 @@
-Name :Emma
-Personal number: 19999
-Member ID: 2100
-Number of boats: 2223
-Boat details: Inga.
